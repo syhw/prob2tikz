@@ -8,7 +8,7 @@ let alphanum = ['a'-'z''A'-'Z''0'-'9']
 let symbolizable = alphanum ['_''^''+''-'] 
 
 rule token = parse
-  | ws+ 
+    ws+ 
   | "$"
   | "$$"
   | "\\begin{equation}"
@@ -21,6 +21,8 @@ rule token = parse
   | '='
   | "\\propto" {EQUAL}
   | ',' {AND}
+  | '.'
+  | "\\times" {TIMES}
   | eof {raise Eof}
   | _ as c { print_char c; token lexbuf }
 (* {

@@ -1,0 +1,1 @@
+P(A|B) \propto P(B|A).P(A)
