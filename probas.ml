@@ -4,7 +4,7 @@ let _ =
         try let result = ProbasParse.main ProbasLex.token lexbuf in
         (
             print_endline "Parsed correctly";
-            List.iter (fun r -> print_endline r; flush stdout) result
+            List.iter print_endline result
         )
         with Parsing.Parse_error ->
             print_endline "catched a parse error"

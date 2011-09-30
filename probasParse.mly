@@ -24,10 +24,9 @@ decomp:
 ;
 
 expr:
-      LPAREN expr RPAREN { print_endline "(expr)"; flush stdout; $2 } 
-    | and_list KNOWING and_list { print_endline "and_list | and_list"; flush
-    stdout; $1 @ $3 }
-    | and_list { print_endline "and_list"; flush stdout; $1 }
+      LPAREN expr RPAREN { print_endline "(expr)"; $2 }
+    | and_list KNOWING and_list { print_endline "and_list | and_list"; $1 @ $3 }
+    | and_list { print_endline "and_list"; $1 }
 ;
 
 and_list:
