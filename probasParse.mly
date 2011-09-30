@@ -1,13 +1,14 @@
 %token LPAREN RPAREN
 %token KNOWING EQUAL AND TIMES
 %token <string> SYMBOL
+%token EOF
 %start main
 %type <string list> main
 
 %%
 
 main:
-    jd EQUAL decomp { $1 @ $3 }
+    jd EQUAL decomp EOF { $1 @ $3 }
 ;
 
 jd:
