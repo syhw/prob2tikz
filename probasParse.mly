@@ -3,10 +3,6 @@
 %token <string> SYMBOL
 %start main
 %type <string list> main
-%type <string list> jd
-%type <string list> decomp
-%type <string list> expr
-%type <string list> and_list
 
 %%
 
