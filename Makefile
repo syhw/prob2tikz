@@ -1,15 +1,35 @@
-all: probasLex.mll probasParse.mly probas.ml
-	ocamllex probasLex.mll       # generates probasLex.ml
-	ocamlyacc probasParse.mly     # generates probasParse.ml and probasParse.mli
-	ocamlc -c probasParse.mli
-	ocamlc -c probasLex.ml
-	ocamlc -c probasParse.ml
-	ocamlc -c probas.ml
-	ocamlc -o probas probasLex.cmo probasParse.cmo probas.cmo
+.PHONY: all clean
+EXEC=probas
+OBJ=probasLex.cmo probasParse.cmo probas.cmo
+GENSRC=probasParse.ml probasParse.mli probasLex.ml probasLex.mli 
+
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	ocamlc -o $@ $+
+
+probasParse.cmo: probasParse.ml probasParse.cmi
+	ocamlc -c $<
+
+%.cmo: %.ml
+	ocamlc -c $<
+
+%.cmi: %.mli
+	ocamlc -c $<
+
+%.ml: %.mll
+	ocamllex $<
+
+%.ml: %.mly
+	ocamlyacc $<
+
+%.mli: %.mly
+	ocamlyacc $<
+
+probasLex.ml: probasParse.cmo
 
 run:
 	./probas < ../gbm.tex
 
 clean:
-	rm *.cmo *.cmi probas
-
+	rm -f *.cmo *.cmi $(EXEC) $(GENSRC)
