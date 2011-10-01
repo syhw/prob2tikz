@@ -1,6 +1,5 @@
 {
 open ProbasParse
-exception Eof
 }
 
 let ws = ['\n''\t'' ']
@@ -23,7 +22,7 @@ rule token = parse
   | ',' {AND}
   | '.'
   | "\\times" {TIMES}
-  | eof {raise Eof}
+  | eof {EOF}
   | _ as c { print_char c; token lexbuf }
 (* {
 let main () =
