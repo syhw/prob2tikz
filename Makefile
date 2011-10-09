@@ -29,7 +29,8 @@ probasParse.cmo: probasParse.ml probasParse.cmi
 probasLex.ml: probasParse.cmo
 
 run:
-	./probas < ../gbm.tex
+	./probas < valid.txt
+	./probas < invalid.txt
 
 clean:
 	rm -f *.cmo *.cmi $(EXEC) $(GENSRC)

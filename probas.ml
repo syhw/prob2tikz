@@ -1,9 +1,12 @@
+let print_tuple t =
+    print_endline ((String.concat "," (fst t)) ^ (String.concat "," (snd t)));;
+
 let _ =
     let lexbuf = Lexing.from_channel stdin in
     try let result = ProbasParse.main ProbasLex.token lexbuf in
     (
         print_endline "Parsed correctly";
-        List.iter print_endline result
+        List.iter print_tuple result
     )
     with Parsing.Parse_error ->
         print_endline "catched a parse error";
