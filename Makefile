@@ -32,5 +32,9 @@ run:
 	./probas < valid.txt
 	./probas < invalid.txt
 
+pdf:
+	pdflatex test
+	open test.pdf
+
 clean:
 	rm -f *.cmo *.cmi $(EXEC) $(GENSRC)
